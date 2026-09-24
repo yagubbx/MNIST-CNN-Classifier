@@ -1,0 +1,36 @@
+{
+  "cnn": {
+    "test_accuracy": 0.9902,
+    "test_loss": 0.02968027971982956,
+    "selected_epoch": 8,
+    "best_validation_loss": 0.036893431594678214,
+    "parameters": 206922,
+    "training_seconds": 297.6372266000835,
+    "most_confused_pair": [
+      2,
+      7
+    ],
+    "pair_errors": 11,
+    "directional_errors": {
+      "2->7": 8,
+      "7->2": 3
+    }
+  },
+  "mlp": {
+    "test_accuracy": 0.9792,
+    "test_loss": 0.07076944417953492,
+    "selected_epoch": 9,
+    "best_validation_loss": 0.07917007793484379,
+    "parameters": 218058,
+    "training_seconds": 46.88529120001476,
+    "most_confused_pair": [
+      4,
+      9
+    ],
+    "pair_errors": 17,
+    "directional_errors": {
+      "4->9": 7,
+      "9->4": 10
+    }
+  }
+}

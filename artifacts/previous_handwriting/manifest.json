@@ -1,0 +1,43 @@
+{
+  "source": "User-provided handwritten digit images",
+  "selection": "All seven images attached by the user, in attachment order",
+  "note": "Original PNG files copied without image editing. Labels interpreted from the visible drawings: 3, 8, 1, 4, 5, 7, 7.",
+  "count": 7,
+  "samples": [
+    {
+      "file": "picture_1.png",
+      "true_digit": 3,
+      "sha256": "861ca6b2fc6ca0882a449752912f46bc06bb4a4bbf0ccb1e5625a318ae464e85"
+    },
+    {
+      "file": "picture_2.png",
+      "true_digit": 8,
+      "sha256": "62bcb1c14f714570aef8ce9e7e92b02854fb757f8e8c9c3366d0779826e162bf"
+    },
+    {
+      "file": "picture_3.png",
+      "true_digit": 1,
+      "sha256": "10cb4ff521ed0892e5147d740df809f1b8f9d2603d54dd1c6b71d2ff291f50d6"
+    },
+    {
+      "file": "picture_4.png",
+      "true_digit": 4,
+      "sha256": "f7f5a2dca4d073ad86a1b64b14d92789910f53879719201fc233c59742ccfdcf"
+    },
+    {
+      "file": "picture_5.png",
+      "true_digit": 5,
+      "sha256": "f73ba94fa4d2d1a97cbc62d11f7e2520e95ef9c72fdc20277970a3dc9239711c"
+    },
+    {
+      "file": "picture_6.png",
+      "true_digit": 7,
+      "sha256": "7c1779e629523b9491a1b540461f1a9999242cbeaa1f8665825b341dbf319383"
+    },
+    {
+      "file": "picture_7.png",
+      "true_digit": 7,
+      "sha256": "b94fba02b7c73f4fa9d8c216e9eec6108a999291c18a91ce3bb42024c2624298"
+    }
+  ]
+}

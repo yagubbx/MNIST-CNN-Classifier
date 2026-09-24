@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "epochs": 12,
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "optimizer": "Adam",
+  "normalization": "uint8 / 255.0",
+  "augmentation": false,
+  "train_count": 54001,
+  "validation_count": 5999,
+  "test_count": 10000,
+  "checkpoint_selection": "lowest validation cross entropy",
+  "split_sha256": "3a54befd165b74f851ef40b685135c12ed532bbac6d51c29b76c8f8d598350ed",
+  "torch_version": "2.14.0+cpu",
+  "device": "cpu",
+  "threads": 2
+}

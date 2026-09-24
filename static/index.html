@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rəqəm tanıma</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px auto; padding: 0 20px; max-width: 480px; color: #222; }
+    h1 { font-size: 24px; }
+    p { line-height: 1.5; }
+    input { max-width: 100%; }
+    button { display: block; margin-top: 16px; padding: 9px 18px; cursor: pointer; }
+    img { display: block; max-width: 220px; max-height: 220px; margin-top: 20px; border: 1px solid #ddd; }
+    img[hidden] { display: none; }
+    #result { font-weight: bold; }
+    small { color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Rəqəm tanıma</h1>
+  <p>Tək əl yazısı rəqəmi olan şəkil seçin.</p>
+  <form id="form">
+    <label for="image">Şəkil:</label>
+    <input id="image" name="image" type="file" accept="image/*" required>
+    <img id="preview" alt="Seçilmiş şəkil" hidden>
+    <button id="submit" type="submit">Yoxla</button>
+  </form>
+  <p id="result" role="status" aria-live="polite"></p>
+  <small>Proqnoz səhv ola bilər.</small>
+  <script>
+    const form = document.getElementById('form');
+    const input = document.getElementById('image');
+    const preview = document.getElementById('preview');
+    const result = document.getElementById('result');
+    const button = document.getElementById('submit');
+    let previewUrl;
+    input.onchange = () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      result.textContent = '';
+      preview.hidden = !input.files.length;
+      if (input.files.length) {
+        previewUrl = URL.createObjectURL(input.files[0]);
+        preview.src = previewUrl;
+      }
+    };
+    form.onsubmit = async event => {
+      event.preventDefault();
+      button.disabled = true;
+      input.disabled = true;
+      result.textContent = 'Yoxlanılır…';
+      const data = new FormData();
+      data.append('image', input.files[0]);
+      try {
+        const response = await fetch('/predict', { method: 'POST', body: data });
+        const prediction = await response.json();
+        if (!response.ok) throw new Error(prediction.error);
+        result.textContent = 'Proqnoz: ' + prediction.predicted_digit;
+      } catch (error) {
+        result.textContent = error.message || 'Proqnoz alınmadı.';
+      } finally {
+        button.disabled = false;
+        input.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>

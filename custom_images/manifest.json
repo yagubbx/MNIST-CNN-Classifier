@@ -1,0 +1,43 @@
+{
+  "source": "User-provided handwritten digit images",
+  "selection": "All seven redrawn images, in the supplied order; collected after inspecting the first attempt.",
+  "note": "User-provided redrawn digits with thicker strokes. Original PNG bytes preserved. Labels: 3, 8, 1, 4, 5, 7, 7. Previous attempt is retained in artifacts/previous_handwriting.",
+  "count": 7,
+  "samples": [
+    {
+      "file": "picture_1.png",
+      "true_digit": 3,
+      "sha256": "979f7356c87a03866b12ff0a483cbd850a177c32e41253794fa9688a03ddd765"
+    },
+    {
+      "file": "picture_2.png",
+      "true_digit": 8,
+      "sha256": "7389c6093209b9c8ddf63b8e693fe255200fe80b7da33cef8615901fbcb02eb7"
+    },
+    {
+      "file": "picture_3.png",
+      "true_digit": 1,
+      "sha256": "bca8bb7d55605cb367d520e49e24a58cf528c290b967bfa66a28b9047e2b4af7"
+    },
+    {
+      "file": "picture_4.png",
+      "true_digit": 4,
+      "sha256": "b30e96533a8fae8bfc8c9a1ac2a62aaab60993243851c1e791d69ed8d062e8f9"
+    },
+    {
+      "file": "picture_5.png",
+      "true_digit": 5,
+      "sha256": "0cafdfa504d8158d3a236c23f6f9ce7075033998de4f9375a568d5cc54a768d1"
+    },
+    {
+      "file": "picture_6.png",
+      "true_digit": 7,
+      "sha256": "79c98a5c15df98c6f65d9df79b079fc2123bdcecef1622e55bdd5bfabc184c8a"
+    },
+    {
+      "file": "picture_7.png",
+      "true_digit": 7,
+      "sha256": "2c189e5b590b2275defc10b4462a55bc30f97185ee0bee02f192cd31fcf977f1"
+    }
+  ]
+}

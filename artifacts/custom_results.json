@@ -1,0 +1,149 @@
+{
+  "source": "User-provided handwritten digit images",
+  "selection": "All seven redrawn images, in the supplied order; collected after inspecting the first attempt.",
+  "note": "User-provided redrawn digits with thicker strokes. Original PNG bytes preserved. Labels: 3, 8, 1, 4, 5, 7, 7. Previous attempt is retained in artifacts/previous_handwriting.",
+  "count": 7,
+  "correct": 7,
+  "samples": [
+    {
+      "file": "picture_1.png",
+      "true_digit": 3,
+      "predicted_digit": 3,
+      "confidence": 1.0,
+      "top3": [
+        {
+          "digit": 3,
+          "probability": 1.0
+        },
+        {
+          "digit": 9,
+          "probability": 3.968130712905804e-09
+        },
+        {
+          "digit": 5,
+          "probability": 8.652885630233698e-10
+        }
+      ]
+    },
+    {
+      "file": "picture_2.png",
+      "true_digit": 8,
+      "predicted_digit": 8,
+      "confidence": 0.9999926090240479,
+      "top3": [
+        {
+          "digit": 8,
+          "probability": 0.9999926090240479
+        },
+        {
+          "digit": 3,
+          "probability": 4.2418064367666375e-06
+        },
+        {
+          "digit": 2,
+          "probability": 3.0691944630234502e-06
+        }
+      ]
+    },
+    {
+      "file": "picture_3.png",
+      "true_digit": 1,
+      "predicted_digit": 1,
+      "confidence": 0.9986183643341064,
+      "top3": [
+        {
+          "digit": 1,
+          "probability": 0.9986183643341064
+        },
+        {
+          "digit": 7,
+          "probability": 0.0010226464364677668
+        },
+        {
+          "digit": 8,
+          "probability": 0.00026209239149466157
+        }
+      ]
+    },
+    {
+      "file": "picture_4.png",
+      "true_digit": 4,
+      "predicted_digit": 4,
+      "confidence": 0.9993821382522583,
+      "top3": [
+        {
+          "digit": 4,
+          "probability": 0.9993821382522583
+        },
+        {
+          "digit": 9,
+          "probability": 0.000540326233021915
+        },
+        {
+          "digit": 7,
+          "probability": 6.236378976609558e-05
+        }
+      ]
+    },
+    {
+      "file": "picture_5.png",
+      "true_digit": 5,
+      "predicted_digit": 5,
+      "confidence": 0.9999983310699463,
+      "top3": [
+        {
+          "digit": 5,
+          "probability": 0.9999983310699463
+        },
+        {
+          "digit": 9,
+          "probability": 8.335345000887173e-07
+        },
+        {
+          "digit": 3,
+          "probability": 8.119613994495012e-07
+        }
+      ]
+    },
+    {
+      "file": "picture_6.png",
+      "true_digit": 7,
+      "predicted_digit": 7,
+      "confidence": 0.9999994039535522,
+      "top3": [
+        {
+          "digit": 7,
+          "probability": 0.9999994039535522
+        },
+        {
+          "digit": 3,
+          "probability": 3.934482037948328e-07
+        },
+        {
+          "digit": 2,
+          "probability": 1.329360657109646e-07
+        }
+      ]
+    },
+    {
+      "file": "picture_7.png",
+      "true_digit": 7,
+      "predicted_digit": 7,
+      "confidence": 0.9999985694885254,
+      "top3": [
+        {
+          "digit": 7,
+          "probability": 0.9999985694885254
+        },
+        {
+          "digit": 2,
+          "probability": 1.3300222008183482e-06
+        },
+        {
+          "digit": 3,
+          "probability": 1.3113209718085272e-07
+        }
+      ]
+    }
+  ]
+}

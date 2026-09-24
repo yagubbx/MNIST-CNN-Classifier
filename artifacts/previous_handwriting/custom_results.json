@@ -1,0 +1,149 @@
+{
+  "source": "User-provided handwritten digit images",
+  "selection": "All seven images attached by the user, in attachment order",
+  "note": "Original PNG files copied without image editing. Labels interpreted from the visible drawings: 3, 8, 1, 4, 5, 7, 7.",
+  "count": 7,
+  "correct": 5,
+  "samples": [
+    {
+      "file": "picture_1.png",
+      "true_digit": 3,
+      "predicted_digit": 5,
+      "confidence": 0.28383806347846985,
+      "top3": [
+        {
+          "digit": 5,
+          "probability": 0.28383806347846985
+        },
+        {
+          "digit": 3,
+          "probability": 0.1723826676607132
+        },
+        {
+          "digit": 1,
+          "probability": 0.13496102392673492
+        }
+      ]
+    },
+    {
+      "file": "picture_2.png",
+      "true_digit": 8,
+      "predicted_digit": 1,
+      "confidence": 0.17135803401470184,
+      "top3": [
+        {
+          "digit": 1,
+          "probability": 0.17135803401470184
+        },
+        {
+          "digit": 8,
+          "probability": 0.16977240145206451
+        },
+        {
+          "digit": 2,
+          "probability": 0.12398023903369904
+        }
+      ]
+    },
+    {
+      "file": "picture_3.png",
+      "true_digit": 1,
+      "predicted_digit": 1,
+      "confidence": 0.5523374676704407,
+      "top3": [
+        {
+          "digit": 1,
+          "probability": 0.5523374676704407
+        },
+        {
+          "digit": 7,
+          "probability": 0.14584048092365265
+        },
+        {
+          "digit": 4,
+          "probability": 0.14315590262413025
+        }
+      ]
+    },
+    {
+      "file": "picture_4.png",
+      "true_digit": 4,
+      "predicted_digit": 4,
+      "confidence": 0.39289358258247375,
+      "top3": [
+        {
+          "digit": 4,
+          "probability": 0.39289358258247375
+        },
+        {
+          "digit": 7,
+          "probability": 0.1938263177871704
+        },
+        {
+          "digit": 9,
+          "probability": 0.11383751034736633
+        }
+      ]
+    },
+    {
+      "file": "picture_5.png",
+      "true_digit": 5,
+      "predicted_digit": 5,
+      "confidence": 0.9323405027389526,
+      "top3": [
+        {
+          "digit": 5,
+          "probability": 0.9323405027389526
+        },
+        {
+          "digit": 3,
+          "probability": 0.02567099966108799
+        },
+        {
+          "digit": 1,
+          "probability": 0.014571738429367542
+        }
+      ]
+    },
+    {
+      "file": "picture_6.png",
+      "true_digit": 7,
+      "predicted_digit": 7,
+      "confidence": 0.7404940128326416,
+      "top3": [
+        {
+          "digit": 7,
+          "probability": 0.7404940128326416
+        },
+        {
+          "digit": 1,
+          "probability": 0.06852678954601288
+        },
+        {
+          "digit": 2,
+          "probability": 0.05541294440627098
+        }
+      ]
+    },
+    {
+      "file": "picture_7.png",
+      "true_digit": 7,
+      "predicted_digit": 7,
+      "confidence": 0.23546160757541656,
+      "top3": [
+        {
+          "digit": 7,
+          "probability": 0.23546160757541656
+        },
+        {
+          "digit": 5,
+          "probability": 0.20560573041439056
+        },
+        {
+          "digit": 2,
+          "probability": 0.11894474178552628
+        }
+      ]
+    }
+  ]
+}
