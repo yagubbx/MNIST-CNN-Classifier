@@ -1,35 +1,39 @@
-# Nəticələrin təhlili
+# Results
 
-Hər iki model CPU-da, eyni bölgü və 12 epoch ilə öyrədilib. Train/validation/test ölçüləri: 54 001 / 5 999 / 10 000. Model seçimi test nəticəsinə deyil, validation loss-a əsaslanır.
+Both models ran for 12 epochs on the same split. Checkpoints were chosen by validation loss, not test accuracy.
 
-| Model | Seçilən epoch | Test accuracy | Test loss |
+| Model | Selected epoch | Test accuracy | Test loss |
 |---|---:|---:|---:|
 | CNN | 8 | 99.02% | 0.0297 |
 | MLP | 9 | 97.92% | 0.0708 |
 
-CNN 1.10 faiz bəndi daha yaxşı nəticə göstərib. CNN yaxın piksellərin əlaqəsini və eyni filtrləri şəklin müxtəlif yerlərində istifadə edir. MLP isə şəkli bir vektora çevirir. Bu, müşahidə edilən fərqin mümkün izahıdır. Nəticə bir seed ilə ölçülüb; bütün təcrübələrdə eyni fərq gözləmək olmaz.
+The CNN is 1.10 percentage points better in this run. Shared filters help it learn local shapes. The MLP treats the image as a flat vector. This is one seed, not proof that every run will give the same gap.
 
-## Təlim qrafikləri
+## Training curves
 
-![Loss və accuracy](artifacts/training_curves.png)
+![Training and validation loss and accuracy](artifacts/training_curves.png)
 
-Son epoch-da CNN train accuracy 99.73%, validation accuracy 98.92% olub. MLP-də bu göstəricilər 99.58% və 97.50%-dir. MLP-nin train/validation fərqi daha böyükdür. Son epoch-larda train nəticəsi yüksək qalsa da validation loss artır; bu, overfitting əlamətidir. Ona görə ən son çəkilər əvəzinə ən aşağı validation loss olan çəkilər seçilib.
+Final train/validation accuracy is 99.73%/98.92% for the CNN and 99.58%/97.50% for the MLP. The larger MLP gap and rising validation loss suggest overfitting. This is why the best validation checkpoint is used instead of the last one.
 
-## Qarışıqlıq matrisləri
+## Confusion matrices
 
-![CNN](artifacts/cnn_confusion.png)
+![CNN confusion matrix](artifacts/cnn_confusion.png)
 
-Sətirlər həqiqi rəqəmi, sütunlar proqnozu göstərir. CNN ən çox **2 və 7** cütünü qarışdırıb: 2 → 7 istiqamətində 8, 7 → 2 istiqamətində 3 səhv; cəmi **11**. Cüt hər iki istiqamətin diaqonaldan kənar cəmi ilə seçilib. Mümkün səbəb: maili xəttin oxşarlığı və 2-nin aşağı hissəsinin zəif yazılması onu 7-yə bənzədə bilər.
+Rows are true labels; columns are predictions. The CNN most often confuses **2 and 7**: eight 2 → 7 errors and three 7 → 2 errors. A weak bottom stroke in a 2 may make it look like a 7.
 
-![MLP](artifacts/mlp_confusion.png)
+![MLP confusion matrix](artifacts/mlp_confusion.png)
 
-MLP-də ən çox qarışan cüt **4 və 9** olub: müvafiq istiqamətlərdə 7 və 10 səhv, cəmi 17. Qapalı üst hissə və oxşar şaquli xətt bu qarışıqlığı izah edə bilər.
+The MLP most often confuses **4 and 9**: seven 4 → 9 errors and ten 9 → 4 errors. Their upper shapes can look similar. These are possible explanations, not proven causes.
 
-## MNIST-dən kənar 7 real əl yazısı
+## Real handwriting: from image to 28 × 28
 
-Eyni saxlanmış CNN ilə iki şəkil dəsti yoxlanılıb. İlk nazik xətli nümunələrdə 5/7 nəticə alındıqdan sonra rəqəmlər daha qalın xətlə yenidən çəkilib. Hər iki dəstin bütün şəkilləri saxlanılıb; bunlarla model öyrədilməyib.
+The saved CNN was reloaded in a separate script. These images were not used for training.
 
-| Şəkil | Həqiqi rəqəm | İlk proqnoz | Yeni proqnoz |
+**Steps:** grayscale → invert dark ink → crop → resize to fit 20 × 20 while keeping the shape → center on a 28 × 28 canvas → divide pixels by 255.
+
+![Original, grayscale, inverted and final 28 by 28 images](artifacts/custom_preprocessing.png)
+
+| Image | True digit | First drawing | Redrawn image |
 |---|---:|---:|---:|
 | picture_1.png | 3 | 5 | 3 |
 | picture_2.png | 8 | 1 | 8 |
@@ -39,20 +43,12 @@ Eyni saxlanmış CNN ilə iki şəkil dəsti yoxlanılıb. İlk nazik xətli nü
 | picture_6.png | 7 | 7 | 7 |
 | picture_7.png | 7 | 7 | 7 |
 
-İlk nəticə **5/7 (71.43%)**, yeni nəticə **7/7 (100%)**-dir. İlk dəstdə 3 → 5 və 8 → 1 səhvləri olub. Yeni dəstdə yeddi rəqəmin hamısı düzgün tanınıb.
+The first thin drawings scored **5/7**. After seeing these results, the digits were drawn again with thicker lines and scored **7/7**. The model did not change. Both line width and shape changed, so thickness alone cannot explain the improvement. This second attempt is not a blind test, and 7/7 does not mean 100% accuracy on all handwriting.
 
-![Yeni şəkillərin preprocessing addımları](artifacts/custom_preprocessing.png)
+Current images are in `custom_images/`. The first scores remain in `artifacts/first_handwriting_results.json`; old image copies are not included in this compact version.
 
-Nazik xətlər kiçildiləndə zəifləyə bilər; daha qalın xətlər modelin formanı ayırmasını asanlaşdıra bilər. Bununla yanaşı yeni rəqəmlərin forması da dəyişib. Buna görə yaxşılaşmanı yalnız qalınlığın təsiri kimi təqdim etmək olmaz.
+## Bonus: learned filters
 
-Yeni şəkillər ilkin nəticələr görüldükdən sonra çəkilib. Bu, ayrıca kor test deyil, girişin yazılışına həssaslığı göstərən təkrar sınaqdır. Yeddi nümunədə 100% nəticə bütün real əl yazılarında 100% dəqiqlik demək deyil.
+![First convolution layer](artifacts/filters.png)
 
-İlk şəkillər, onların manifesti, 5/7 nəticə JSON-u və qrafiki `artifacts/previous_handwriting/` daxilindədir. Cari `custom_images/` qovluğunda yeni yeddi PNG var.
-
-CNN və MLP yenidən MNIST üzərində öyrədilərək hesabatdakı test göstəriciləri təkrar əldə olunub. Son şəkil dəyişiklikləri zamanı model çəkiləri dəyişdirilməyib. Gələcək təlim nəticələri fərqlənərsə, hesabat da yenilənməlidir.
-
-## Bonus: öyrənilmiş filtrlər
-
-![İlk convolution qatının filtrləri](artifacts/filters.png)
-
-Şəkildə ilk qatın 16 ədəd 3 × 3 filtri göstərilib. Hamısında eyni rəng şkalası istifadə olunur: qırmızı müsbət, mavi mənfi çəkiləri göstərir. Filtrlər lokal piksel fərqlərinə cavab verir; ayrı-ayrılıqda tam rəqəm təsviri deyil.
+These are the first layer's 16 learned 3 × 3 filters. Red shows positive weights and blue shows negative weights, on the same scale. They detect local patterns, not whole digits.

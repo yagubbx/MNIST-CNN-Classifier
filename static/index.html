@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="az">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rəqəm tanıma</title>
+  <title>Digit Recognition</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px auto; padding: 0 20px; max-width: 480px; color: #222; }
     h1 { font-size: 24px; }
@@ -17,16 +17,16 @@
   </style>
 </head>
 <body>
-  <h1>Rəqəm tanıma</h1>
-  <p>Tək əl yazısı rəqəmi olan şəkil seçin.</p>
+  <h1>Digit Recognition</h1>
+  <p>Select an image with one handwritten digit.</p>
   <form id="form">
-    <label for="image">Şəkil:</label>
+    <label for="image">Image:</label>
     <input id="image" name="image" type="file" accept="image/*" required>
-    <img id="preview" alt="Seçilmiş şəkil" hidden>
-    <button id="submit" type="submit">Yoxla</button>
+    <img id="preview" alt="Selected image" hidden>
+    <button id="submit" type="submit">Predict</button>
   </form>
   <p id="result" role="status" aria-live="polite"></p>
-  <small>Proqnoz səhv ola bilər.</small>
+  <small>The prediction may be wrong.</small>
   <script>
     const form = document.getElementById('form');
     const input = document.getElementById('image');
@@ -47,16 +47,16 @@
       event.preventDefault();
       button.disabled = true;
       input.disabled = true;
-      result.textContent = 'Yoxlanılır…';
+      result.textContent = 'Checking…';
       const data = new FormData();
       data.append('image', input.files[0]);
       try {
         const response = await fetch('/predict', { method: 'POST', body: data });
         const prediction = await response.json();
         if (!response.ok) throw new Error(prediction.error);
-        result.textContent = 'Proqnoz: ' + prediction.predicted_digit;
+        result.textContent = 'Prediction: ' + prediction.predicted_digit;
       } catch (error) {
-        result.textContent = error.message || 'Proqnoz alınmadı.';
+        result.textContent = error.message || 'Prediction failed.';
       } finally {
         button.disabled = false;
         input.disabled = false;

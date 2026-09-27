@@ -17,26 +17,26 @@ def index():
 
 @app.errorhandler(413)
 def too_large(error):
-    return jsonify(error='Şəkil 5 MB-dan kiçik olmalıdır.'), 413
+    return jsonify(error='The image must be smaller than 5 MB.'), 413
 
 
 @app.post('/predict')
 def predict_image():
     global model
     if 'image' not in request.files:
-        return jsonify(error='Şəkil seçin.'), 400
+        return jsonify(error='Select an image.'), 400
     try:
         with Image.open(request.files['image'].stream) as image:
             if image.width * image.height > 16000000:
-                return jsonify(error='Şəklin ölçüsü çox böyükdür.'), 400
+                return jsonify(error='The image dimensions are too large.'), 400
             if model is None:
                 if not (ROOT/'artifacts/cnn.pt').is_file():
-                    return jsonify(error='Model tapılmadı. Əvvəl train.py işlədin.'), 503
+                    return jsonify(error='Model not found. Run train.py first.'), 503
                 model = load_model()
             result, _ = predict(model, image)
         return jsonify(result)
     except (ValueError, OSError, UnidentifiedImageError, Image.DecompressionBombError):
-        return jsonify(error='Şəkil oxunmadı və ya rəqəm görünmür.'), 400
+        return jsonify(error='The image could not be read, or no digit was found.'), 400
 
 
 if __name__ == '__main__':

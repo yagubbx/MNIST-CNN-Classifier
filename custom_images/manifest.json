@@ -1,7 +1,7 @@
 {
   "source": "User-provided handwritten digit images",
   "selection": "All seven redrawn images, in the supplied order; collected after inspecting the first attempt.",
-  "note": "User-provided redrawn digits with thicker strokes. Original PNG bytes preserved. Labels: 3, 8, 1, 4, 5, 7, 7. Previous attempt is retained in artifacts/previous_handwriting.",
+  "note": "User-provided redrawn digits with thicker strokes. Original PNG bytes preserved. Labels: 3, 8, 1, 4, 5, 7, 7. Previous attempt is retained in artifacts/first_handwriting_results.json.",
   "count": 7,
   "samples": [
     {
